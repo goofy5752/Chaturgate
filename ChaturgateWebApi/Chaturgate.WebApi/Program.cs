@@ -1,14 +1,6 @@
 using Chaturgate.Data;
-using Chaturgate.Data.Models;
-using Chaturgate.Data.Repositories.Interfaces;
-using Chaturgate.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Chaturgate.Common.Infrastructure;
 using Chaturgate.WebApi.Extenstions;
-using Microsoft.Extensions.Configuration;
 
 namespace Chaturgate.WebApi
 {
