@@ -1,6 +1,7 @@
 using Chaturgate.Data;
 using Microsoft.EntityFrameworkCore;
 using Chaturgate.WebApi.Extenstions;
+using Chaturgate.Data.Seeder;
 
 namespace Chaturgate.WebApi
 {
@@ -40,6 +41,7 @@ namespace Chaturgate.WebApi
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ChaturgateDbContext>();
                 dbContext.Database.Migrate();
+                new ChaturgateDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
 
             if (app.Environment.IsDevelopment())
