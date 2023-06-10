@@ -4,6 +4,7 @@ using Chaturgate.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chaturgate.Data.Migrations
 {
     [DbContext(typeof(ChaturgateDbContext))]
-    partial class ChaturgateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230610200725_AddThumbnailToLiveStream")]
+    partial class AddThumbnailToLiveStream
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

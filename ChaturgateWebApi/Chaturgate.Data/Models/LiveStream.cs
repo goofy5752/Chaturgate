@@ -20,6 +20,8 @@ namespace Chaturgate.Data.Models
 
         public bool IsDeleted { get; set; }
 
+        public string Thumbnail { get; set; }
+
         public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<Viewer> Viewers { get; set; }    
