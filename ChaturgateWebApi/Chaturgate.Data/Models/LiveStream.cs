@@ -4,7 +4,6 @@ namespace Chaturgate.Data.Models
 {
     public class LiveStream : BaseModel<int>
     {
-        public string UserId { get; set; }
 
         public string Title { get; set; }
 
@@ -16,12 +15,13 @@ namespace Chaturgate.Data.Models
 
         public string StreamUrl { get; set; }
 
-        public string Status { get; set; }
+        public StreamStatus Status { get; set; }
 
         public bool IsDeleted { get; set; }
 
         public string Thumbnail { get; set; }
 
+        public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<Viewer> Viewers { get; set; }    

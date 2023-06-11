@@ -4,6 +4,7 @@ using Chaturgate.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chaturgate.Data.Migrations
 {
     [DbContext(typeof(ChaturgateDbContext))]
-    partial class ChaturgateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230611184408_AddStreamStatusToLiveStream")]
+    partial class AddStreamStatusToLiveStream
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,7 +193,7 @@ namespace Chaturgate.Data.Migrations
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("StatusId")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("StreamUrl")
@@ -207,27 +210,9 @@ namespace Chaturgate.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StatusId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Streams");
-                });
-
-            modelBuilder.Entity("Chaturgate.Data.Models.StreamStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StreamStatus");
                 });
 
             modelBuilder.Entity("Chaturgate.Data.Models.Viewer", b =>
@@ -388,15 +373,9 @@ namespace Chaturgate.Data.Migrations
 
             modelBuilder.Entity("Chaturgate.Data.Models.LiveStream", b =>
                 {
-                    b.HasOne("Chaturgate.Data.Models.StreamStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId");
-
                     b.HasOne("Chaturgate.Data.Models.ApplicationUser", "User")
                         .WithMany("Streams")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Status");
 
                     b.Navigation("User");
                 });
