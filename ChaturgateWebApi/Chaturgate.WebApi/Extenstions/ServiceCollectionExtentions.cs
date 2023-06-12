@@ -7,6 +7,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Chaturgate.Data.Repositories.Interfaces;
 using Chaturgate.Data.Repositories;
+using Chaturgate.Services.Interfaces;
+using Chaturgate.Services;
 
 namespace Chaturgate.WebApi.Extenstions
 {
@@ -68,6 +70,7 @@ namespace Chaturgate.WebApi.Extenstions
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
             => services
+                .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
