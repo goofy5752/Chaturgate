@@ -15,6 +15,8 @@ namespace Chaturgate.Data.Models
 
         public string StreamUrl { get; set; }
 
+        public string StreamKey { get; set; }
+
         public StreamStatus Status { get; set; }
 
         public bool IsDeleted { get; set; }
