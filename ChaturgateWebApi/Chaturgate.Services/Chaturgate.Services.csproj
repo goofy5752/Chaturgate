@@ -3,7 +3,16 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chaturgate.Data\Chaturgate.Data.csproj" />
+    <ProjectReference Include="..\Chaturgate.Dtos\Chaturgate.Dtos.csproj" />
+  </ItemGroup>
 
 </Project>

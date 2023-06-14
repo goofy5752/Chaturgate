@@ -1,4 +1,4 @@
-﻿namespace Chaturgate.Dtos.AuthenticationDtos
+﻿namespace Chaturgate.Dtos.Request.AuthenticationDtos
 {
     public class RegisterUserDto
     {

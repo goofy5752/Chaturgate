@@ -1,7 +1,7 @@
 ﻿using Chaturgate.Common;
 using Chaturgate.Common.Infrastructure;
 using Chaturgate.Data.Models;
-using Chaturgate.Dtos.AuthenticationDtos;
+using Chaturgate.Dtos.Request.AuthenticationDtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -60,7 +60,7 @@ namespace Chaturgate.WebApi.Controllers
 
         #region Login
 
-        [HttpPost]
+        [HttpPost("Login")]
         //POST : /api/Authentication/Login
         public async Task<IActionResult> Login(LoginUserDto model)
         {
@@ -90,6 +90,8 @@ namespace Chaturgate.WebApi.Controllers
                     Subject = new ClaimsIdentity(new[]
                     {
                         new Claim("UserID", user.Id),
+                        new Claim("UserEmail", user.Email),
+                        new Claim("UserName", user.UserName),
                         new Claim(options.ClaimsIdentity.RoleClaimType, role.FirstOrDefault())
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),

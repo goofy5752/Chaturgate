@@ -24,6 +24,7 @@
     <ProjectReference Include="..\Chaturgate.Common\Chaturgate.Common.csproj" />
     <ProjectReference Include="..\Chaturgate.Data\Chaturgate.Data.csproj" />
     <ProjectReference Include="..\Chaturgate.Dtos\Chaturgate.Dtos.csproj" />
+    <ProjectReference Include="..\Chaturgate.Services\Chaturgate.Services.csproj" />
   </ItemGroup>
 
 </Project>
