@@ -71,6 +71,7 @@ namespace Chaturgate.WebApi.Extenstions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
             => services
                 .AddScoped<ICurrentUserService, CurrentUserService>()
+                .AddScoped<ILiveStreamService, LiveStreamService>()
                 .AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
