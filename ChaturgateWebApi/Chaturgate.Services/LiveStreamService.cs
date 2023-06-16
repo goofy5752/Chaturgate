@@ -57,26 +57,40 @@ namespace Chaturgate.Services
                 .All()
                 .SingleOrDefaultAsync(x => x.StreamKey == streamKey);
 
-            var liveStatus = await streamStatusRepository
-                .All()
-                .SingleOrDefaultAsync(ss => ss.Id == liveStream.Status.Id);
-
-            if (liveStream == null)
-            {
-                throw new Exception("Stream not found.");
-            }
+            //if (liveStream == null)
+            //{
+            //    throw new Exception("Stream not found.");
+            //}
 
             // Return the status of the live stream
             return new StreamStatusResponseDto
             {
-                Title = liveStream.Title,
-                Description = liveStream.Description,
-                Thumbnail = liveStream.Thumbnail,
-                Status = liveStatus.Name,
-                StartTime = liveStream.StartTime,
-                UserId = liveStream.UserId,
-                StreamKey = liveStream.StreamKey,
+                //Title = liveStream.Title,
+                //Description = liveStream.Description,
+                //Thumbnail = liveStream.Thumbnail,
+                //Status = "",
+                //StartTime = liveStream.StartTime,
+                //UserId = liveStream.UserId,
+                //StreamKey = liveStream.StreamKey,
             };
+        }
+
+        public async Task EndLiveStreamAsync(string streamKey)
+        {
+            // Find the live stream in your data store using the stream key
+            var liveStream = this.liveStreamRepository.All().FirstOrDefault(s => s.StreamKey == streamKey);
+            if (liveStream == null)
+            {
+                throw new ArgumentException("Invalid stream key.");
+            }
+
+            // Update the status and remove the stream key
+            liveStream.Status.Name = "End";
+            liveStream.StreamKey = null;
+
+            // Save the changes
+            await this.liveStreamRepository.SaveChangesAsync();
+            await Task.CompletedTask; // Replace with your data store save method
         }
     }
 }

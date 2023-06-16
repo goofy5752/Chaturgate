@@ -7,6 +7,8 @@ namespace Chaturgate.Services.Interfaces
     {
         Task<string> CreateLiveStreamAsync(CreateLiveStreamRequestDto liveStreamDto);
 
+        Task EndLiveStreamAsync(string streamKey);
+
         Task<StreamStatusResponseDto> GetStreamStatus(string streamKey);
     }
 }
